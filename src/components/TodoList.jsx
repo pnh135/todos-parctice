@@ -47,6 +47,12 @@ const TodoList = () => {
         setTodos(updatedTodos);
     }
 
+    const handleDelete = (id) => {
+        const filterdTodo = todos.filter((todo) => id !== todo.id)
+        setTodos(filterdTodo)
+        return;
+    }
+
   return (
     <div>
         <form onSubmit={handleSubmit}>
@@ -56,7 +62,9 @@ const TodoList = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>{todo.text}
-          <button onClick={()=>handleUpdate(todo.id)}>{todo.completed ? "완료": "미완료"}</button></li>
+          <button onClick={()=>handleUpdate(todo.id)}>{todo.completed ? "완료": "미완료"}</button>
+          <button onClick={()=>handleDelete(todo.id)}>삭제</button>
+          </li>
         ))}
       </ul>
       </div>
